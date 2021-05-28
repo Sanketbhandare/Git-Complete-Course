@@ -9,31 +9,24 @@ Let's have a quick overview !!
 
 Please find the below command cheatsheet for your reference in order to get basic idea on how git vcs works.
 
-
-
-
-git init 						---> to initiate the repo , [.git directory will be created]
-git branch sns_plot				---> create our own branch 
-git checkout sns_plot			---> selecting our branch to modify code 
-git branch -a					---> this will display all branches 
-vi xyz.py						---> modify your code 
-git status						---> check the git status if it is workign directory
-git add -A						---> move it to staging area 
-git commit -m "message"			---> commit your changes to your branch, no effect on local master branch / remote repository
-git push -u origin sns_plot		---> pushed your branch to remote repository [ That's the reason, unit test is performed. ] 
-git checkout master 			---> switch to master branch
-git pull origin master			---> Pull the changes from master before updating your branch
-git merge sns_plot				---> merge your branch into master branch
-git push origin master			---> push your master branch to remote master branch
-git branch --merged 			---> merged branches are listed here
-git branch -d sns_plot 			---> delte the branch locally
-git push origin --delete sns_plot ---> delete the branch from remote repo
-git log 						---> log related to commit operation
-git diff 						---> to get the list of modifications you made
-
-
+git init 				                    ---> to initiate the repo , [.git directory will be created & removing this will stop the tracking of repository. ]
+git branch sns_plot				          ---> create our own branch 
+git checkout sns_plot			          ---> selecting our branch to modify code 
+git branch -a					              ---> this will display all branches 
+vi xyz.py						                ---> modify your code 
+git status						              ---> check the git status if it is workign directory
+git add -A						              ---> move it to staging area 
+git commit -m "message"		          ---> commit your changes to your branch, no effect on local master branch / remote repository
+git push -u origin sns_plot		      ---> pushed your branch to remote repository [ That's the reason, unit test is performed. ] 
+git checkout master 			          ---> switch to master branch
+git pull origin master		          ---> Pull the changes from master before updating your branch
+git merge sns_plot				          ---> merge your branch into master branch
+git push origin master		          ---> push your master branch to remote master branch
+git branch --merged 			          ---> merged branches are listed here
+git branch -d sns_plot 		          ---> delte the branch locally
+git push origin --delete sns_plot   ---> delete the branch from remote repo
+git log 						                ---> log related to commit operation
+git diff 						                ---> to get the list of modifications you made
 
 
 Stay tuned for more updates and tutorials in coming session. Till then, Happy Learning !! :)
-
-
