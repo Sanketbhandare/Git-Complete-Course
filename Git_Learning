@@ -1,0 +1,565 @@
+PS U:\> git --version
+git version 2.31.1.windows.1
+------------------------------------------------------------------------------------------------------------------------------------
+PS U:\> git config --global user.name "Sanket Bhandare"
+PS U:\> git config --global user.email "Sanket01bhandare@gmail.com"
+PS U:\> git config --list
+user.name=Sanket Bhandare
+user.email=Sanket01bhandare@gmail.com
+------------------------------------------------------------------------------------------------------------------------------------
+Initialize repo from existing code
+------------------------------------------------------------------------------------------------------------------------------------
+PS C:\MyData\Jupyter Notebooks\Python_Chapter2> git init                                                                                                                                     hint: Using 'master' as the name for the initial branch. This default branch name
+Initialized empty Git repository in C:/MyData/Jupyter Notebooks/Python_Chapter2/.git/
+------------------------------------------------------------------------------------------------------------------------------------
+PS C:\MyData\Jupyter Notebooks\Python_Chapter2> dir -Force                                                                                                                                   
+
+    Directory: C:\MyData\Jupyter Notebooks\Python_Chapter2
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d--h--        5/28/2021   7:33 AM                .git
+-a----        5/23/2021   2:41 PM          10483 chapter2_numpy.ipynb
+-a----        5/24/2021   7:04 PM          27434 chapter2_pandas.ipynb
+-a----        5/26/2021  12:42 PM         150455 chapter2_seaborn.ipynb
+------------------------------------------------------------------------------------------------------------------------------------
+Removing .git will stop tracking with Git repository.
+------------------------------------------------------------------------------------------------------------------------------------
+BNH9KOR@BMH2-C-00148 MINGW64 /c/MyData/Jupyter Notebooks/Python_Chapter2 (master)
+$ git status
+
+On branch master
+No commits yet
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        chapter2_numpy.ipynb
+        chapter2_pandas.ipynb
+        chapter2_seaborn.ipynb
+nothing added to commit but untracked files present (use "git add" to track)
+
+------------------------------------------------------------------------------------------------------------------------------------
+BNH9KOR@BMH2-C-00148 MINGW64 /c/MyData/Jupyter Notebooks/Python_Chapter2 (master)
+$ touch .gitignore
+
+[ .gitignore will ignore the files that you wish to ignore and put the files under .gitignore file]
+------------------------------------------------------------------------------------------------------------------------------------
+Example illustrated below.
+------------------------------------------------------------------------------------------------------------------------------------
+BNH9KOR@BMH2-C-00148 MINGW64 /c/MyData/Jupyter Notebooks/Python_Chapter2 (master)
+$ cat .gitignore
+chapter2_pandas.ipynb
+
+BNH9KOR@BMH2-C-00148 MINGW64 /c/MyData/Jupyter Notebooks/Python_Chapter2 (master)
+$  git status
+
+On branch master
+No commits yet
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .gitignore
+        chapter2_numpy.ipynb
+        chapter2_seaborn.ipynb
+		
+[Files mentioned under .gitignore are no more visible under git status]
+------------------------------------------------------------------------------------------------------------------------------------
+3 Stages
+
+	1. working directory [ Untracked files ]
+	2. Staging Area [ git add - to put files into staging area & "git reset" to remove files from staging area ]
+	3. Commit / .git directory / Repository
+------------------------------------------------------------------------------------------------------------------------------------
+Example:
+
+$ git add .gitignore
+The file will have its original line endings in your working directory
+
+BNH9KOR@BMH2-C-00148 MINGW64 /c/MyData/Jupyter Notebooks/Python_Chapter2 (master)
+$ git status
+On branch master
+No commits yet
+Changes to be committed:
+        new file:   .gitignore
+Untracked files:
+        chapter2_numpy.ipynb
+        chapter2_seaborn.ipynb
+		
+		
+To add all remaining files under working directory to staging area, use command "git add -A"
+
+$ git add -A
+warning: LF will be replaced by CRLF in chapter2_numpy.ipynb.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in chapter2_seaborn.ipynb.
+The file will have its original line endings in your working directory
+
+$ git status
+On branch master
+
+No commits yet
+Changes to be committed:
+        new file:   .gitignore
+        new file:   chapter2_numpy.ipynb
+        new file:   chapter2_seaborn.ipynb
+
+
+To remove file from staging area, simply use the "git reset" command.
+
+	$ git reset .gitignore
+	$ git status
+	
+	On branch master
+	No commits yet
+	Changes to be committed:
+	  (use "git rm --cached <file>..." to unstage)
+			new file:   chapter2_numpy.ipynb
+			new file:   chapter2_seaborn.ipynb
+	Untracked files:
+			.gitignore
+
+To remove everything from staging area, use "git reset"
+
+	$ git reset
+	$ git status
+
+	On branch master
+	No commits yet
+	Untracked files:
+			.gitignore
+			chapter2_numpy.ipynb
+			chapter2_seaborn.ipynb
+
+------------------------------------------------------------------------------------------------------------------------------------
+Git Commit operation: [ with message ]
+
+$ git commit -m "Initial commit"
+[master (root-commit) 8ed72fd] Initial commit
+ 3 files changed, 1277 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 chapter2_numpy.ipynb
+ create mode 100644 chapter2_seaborn.ipynb
+
+$ git status
+On branch master
+nothing to commit, working tree clean
+------------------------------------------------------------------------------------------------------------------------------------
+
+Git Log operation [ Unique hash value generated ]
+
+$ git log
+commit 8ed72fd0c1de1689ec3c543a032e04df8c06ab84 (HEAD -> master)
+Author: Sanket Bhandare <Sanket01bhandare@gmail.com>
+Date:   Fri May 28 08:04:13 2021 +0200
+
+    Initial commit
+------------------------------------------------------------------------------------------------------------------------------------
+Cloning a remote repository: [ From GitHub ]
+------------------------------------------------------------------------------------------------------------------------------------
+1. Cloning Local Repo:
+
+	$ git clone ../Python_Chapter2/ .
+	Cloning into '.'...
+	done.
+
+	$ ls -la
+	total 173
+	drwxr-xr-x 1 BNH9KOR 1049089      0 May 28 08:08 ./
+	drwxr-xr-x 1 BNH9KOR 1049089      0 May 28 08:07 ../
+	drwxr-xr-x 1 BNH9KOR 1049089      0 May 28 08:08 .git/
+	-rw-r--r-- 1 BNH9KOR 1049089     22 May 28 08:08 .gitignore
+	-rw-r--r-- 1 BNH9KOR 1049089  10483 May 28 08:08 chapter2_numpy.ipynb
+	-rw-r--r-- 1 BNH9KOR 1049089 150455 May 28 08:08 chapter2_seaborn.ipynb
+	
+
+vi chapter2_numpy.ipynb and make some changes
+
+------------------------------------------------------------------------------------------------------------------------------------
+2. Cloning Remote Repo:
+------------------------------------------------------------------------------------------------------------------------------------
+Suppose now I have made changes to Cloned repository,
+How Can we push to remote repository? Commit the changes? let's check.
+
+1. git diff   --> (get the difference on changes made into the code. )
+
+	$ git diff
+	diff --git a/chapter2_numpy.ipynb b/chapter2_numpy.ipynb
+	index 8b52fa0..891d4ce 100644
+	--- a/chapter2_numpy.ipynb
+	+++ b/chapter2_numpy.ipynb
+	@@ -510,3 +510,5 @@
+	  "nbformat": 4,
+	  "nbformat_minor": 4
+	 }
+	+
+	+##"Collected data is from #Cloned Repository"
+
+
+2. git status  --> (this will show the modified file )
+
+	$ git status
+	On branch master
+	Your branch is up to date with 'origin/master'.
+
+	Changes not staged for commit:
+	  (use "git add <file>..." to update what will be committed)
+	  (use "git restore <file>..." to discard changes in working directory)
+			modified:   chapter2_numpy.ipynb
+
+3. Add the code to the staging area
+
+	$ git add -A
+	$ git status
+	On branch master
+	Your branch is up to date with 'origin/master'.
+	Changes to be committed:
+	  (use "git restore --staged <file>..." to unstage)
+        modified:   chapter2_numpy.ipynb
+
+4. Commit the code 
+
+	$ git commit -m "Comment in Pandas Notebook"
+	[master 16f8864] Comment in Pandas Notebook
+	 1 file changed, 2 insertions(+)
+
+5. Pull updated repository from remote repository, if no changes done, it will show the message.
+	
+	$ git pull origin master
+	From C:/MyData/Jupyter Notebooks/Cloned_repo/../Python_Chapter2
+	* branch            master     -> FETCH_HEAD
+	Already up to date.
+
+6. To made changes to master repository from Cloned repository, use "git push origin master" command.
+
+	$ git push origin master
+	Enumerating objects: 5, done.
+	Counting objects: 100% (5/5), done.
+	Delta compression using up to 8 threads
+	Compressing objects: 100% (3/3), done.
+	Writing objects: 100% (3/3), 410 bytes | 205.00 KiB/s, done.
+	Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+	To C:/MyData/Jupyter Notebooks/Cloned_repo/../Python_Chapter2/
+	   8ed72fd..16f8864  master -> master
+------------------------------------------------------------------------------------------------------------------------------------
+COMMON WORKFLOW:
+
+So far, we have used master branch which is not a good practise.
+Good practise says that, create your own branch for desired feature and name that branch.
+Commands:
+
+git branch numpy_compute	--( create a branch )
+git branch 					--( list all branches )
+
+Example:
+
+	$ git branch numpy_compute
+
+	$ git branch
+	* master
+	  numpy_compute
+
+To work on our desired branch, you need to check out branch.
+
+	git checkout numpy_compute
+
+Example:
+
+	$ git branch
+	* master
+	  numpy_compute
+
+	$ git checkout numpy_compute
+	Switched to branch 'numpy_compute'
+
+	$ git branch
+	  master
+	* numpy_compute
+
+Once your changes are done under your branch and add code to staging area and commit the code using "git commit" command.
+
+Example:
+
+	$ ls
+	chapter2_numpy.ipynb  chapter2_seaborn.ipynb
+
+	$ vi chapter2_numpy.ipynb
+
+	$ git status
+	On branch numpy_compute
+	Changes not staged for commit:
+	  (use "git add <file>..." to update what will be committed)
+	  (use "git restore <file>..." to discard changes in working directory)
+			modified:   chapter2_numpy.ipynb
+
+	$ git add -A
+
+	$ git status
+	On branch numpy_compute
+	Changes to be committed:
+	  (use "git restore --staged <file>..." to unstage)
+			modified:   chapter2_numpy.ipynb
+
+	$ git commit -m "numpy comment section"
+	[numpy_compute e66d149] numpy comment section
+	 1 file changed, 4 insertions(+)
+
+	$ git status
+	On branch numpy_compute
+	nothing to commit, working tree clean
+------------------------------------------------------------------------------------------------------------------------------------
+PUSHING BRANCES TO THE REMOTE REPOSITORY AND DELETING USER DEFINDED BRANCHES
+------------------------------------------------------------------------------------------------------------------------------------
+
+git branch -a : to display all branches available
+
+git push -u origin numpy_compute	---> to push our branch where changes are made, to remote repository.
+
+git checkout						---> to select out branch which we created for modification
+
+git pull origin master				---> to pull master copy to our origin
+
+git branch --merged					---> it will show merged copied, initially it will be master only
+
+git merge numpy_compute				---> this will merge the numpy_compute with master branch
+
+git branch -d numpy_compute			---> once merging is done, this will delete the local copy of our branch
+
+git branch -a						---> to display all branches available
+
+git push origin --delete numpy_compute	---> to delete the branches from remote repository which was created during git push.
+------------------------------------------------------------------------------------------------------------------------------------
+Example:
+
+	$ git branch
+	  master
+	* numpy_compute
+	
+	$ git push -u origin numpy_compute
+	Enumerating objects: 5, done.
+	Counting objects: 100% (5/5), done.
+	Delta compression using up to 8 threads
+	Compressing objects: 100% (3/3), done.
+	Writing objects: 100% (3/3), 482 bytes | 160.00 KiB/s, done.
+	Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+	To C:/MyData/Jupyter Notebooks/Cloned_repo/../Python_Chapter2/
+	 * [new branch]      numpy_compute -> numpy_compute
+	Branch 'numpy_compute' set up to track remote branch 'numpy_compute' from 'origin'.
+
+	$ git branch -a
+	  master
+	* numpy_compute
+	  remotes/origin/HEAD -> origin/master
+	  remotes/origin/master
+	  remotes/origin/numpy_compute
+
+	$ git checkout master
+	Switched to branch 'master'
+	Your branch is up to date with 'origin/master'.
+
+	$ git pull origin master
+	From C:/MyData/Jupyter Notebooks/Cloned_repo/../Python_Chapter2
+	 * branch            master     -> FETCH_HEAD
+	Already up to date.
+
+	$ git branch --merged
+	* master
+
+	$ git merge numpy_compute
+	Updating 16f8864..e66d149
+	Fast-forward
+	 chapter2_numpy.ipynb | 4 ++++
+	 1 file changed, 4 insertions(+)
+
+	$ git push origin master
+	Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+	To C:/MyData/Jupyter Notebooks/Cloned_repo/../Python_Chapter2/
+	   16f8864..e66d149  master -> master
+
+	$ git branch --merged
+	* master
+	  numpy_compute
+
+	$ git branch -d numpy_compute
+	Deleted branch numpy_compute (was e66d149).
+
+	$ git branch -a
+	* master
+	  remotes/origin/HEAD -> origin/master
+	  remotes/origin/master
+	  remotes/origin/numpy_compute
+
+	$  git push origin --delete numpy_compute
+	To C:/MyData/Jupyter Notebooks/Cloned_repo/../Python_Chapter2/
+	 - [deleted]         numpy_compute
+
+	$ git branch -a
+	* master
+	  remotes/origin/HEAD -> origin/master
+	  remotes/origin/master
+------------------------------------------------------------------------------------------------------------------------------------
+FASTER EXAMPLE:
+
+git init 						---> to initiate the repo , [.git directory will be created]
+git branch sns_plot				---> create our own branch 
+git checkout sns_plot			---> selecting our branch to modify code 
+git branch -a					---> this will display all branches 
+vi xyz.py						---> modify your code 
+git status						---> check the git status if it is workign directory
+git add -A						---> move it to staging area 
+git commit -m "message"			---> commit your changes to your branch, no effect on local master branch / remote repository
+git push -u origin sns_plot		---> pushed your branch to remote repository [ That's the reason, unit test is performed. ] 
+git checkout master 			---> switch to master branch
+git pull origin master			---> Pull the changes from master before updating your branch
+git merge sns_plot				---> merge your branch into master branch
+git push origin master			---> push your master branch to remote master branch
+git branch --merged 			---> merged branches are listed here
+git branch -d sns_plot 			---> delte the branch locally
+git push origin --delete sns_plot ---> delete the branch from remote repo
+git log 						---> log related to commit operation
+git diff 						---> to get the list of modifications you made
+------------------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------------------
+Fix issues
+------------------------------------------------------------------------------------------------------------------------------------
+
+1) Reverting / Undo incorrect changes in a code 
+
+	vi xyz.py	
+	git diff ( will show added / modified lines with + sign)
+	git status
+
+	Use command "git checkout xyz.py" to undo the changes made.
+
+	git status 
+	git diff
+
+2) Commit with Improper message
+
+	Command:
+		
+	$ git commit --amend -m  "Comment in Numpy Notebook"
+	
+3) Commit Log status 
+
+	Command:
+	
+	$ git log --stat
+	
+4) To clear unnecessary log history and keep initial commit log
+	
+	git reset --soft 8ed72fd0c1de1		--> [ it will keep the only log which we mention in the command ]
+	git reset  8ed72fd0c1de1			--> [ it will make files to staging area ]
+	git reset --hard 8ed72fd0c1de1		--> [ it will revert the changes back to it's previous state ]
+
+
+	Command:
+	
+	$ git log
+		commit 4d38ceca776e36ecf1843876fcba0215256fbeb7 (HEAD -> master)
+		Comment in Numpy Notebook
+
+		commit 8ed72fd0c1de1689ec3c543a032e04df8c06ab84
+		Initial commit
+
+	$ git reset --soft 8ed72fd0c1de1
+	$ git log
+		commit 8ed72fd0c1de1689ec3c543a032e04df8c06ab84 (HEAD -> master)
+		Initial commit
+
+	$ git cherry-pick  cd8417ee29d 		--> to import the log from master branch/ any other branch
+	
+5) Delete all untracked directory / files
+
+	$ git clean -df
+
+6) History of all commands
+
+	$ git reflog
+	
+7) Revert the inappropriate commit if you want
+
+	$ git log
+		commit cd8417ee29de3889ef0061596ea6f850f4ca628b (HEAD -> sns_plot, origin/sns_plot)
+		Seaborn Notebook Comments
+		commit 8ed72fd0c1de1689ec3c543a032e04df8c06ab84 (master)
+		Initial commit
+
+	$ git revert cd8417ee2
+		hint: Waiting for your editor to close the file... unix2dos: converting file C:/MyData/Jupyter Notebooks/Cloned_repo/.git/COMMIT_EDITMSG to DOS format...
+		dos2unix: converting file C:/MyData/Jupyter Notebooks/Cloned_repo/.git/COMMIT_EDITMSG to Unix format...
+		[sns_plot 84d3f92] Revert "Seaborn Notebook Comments"
+		 1 file changed, 4 deletions(-)
+
+	$ tail chapter2_seaborn.ipynb
+	   "mimetype": "text/x-python",
+	   "name": "python",
+	   "nbconvert_exporter": "python",
+	   "pygments_lexer": "ipython3",
+	   "version": "3.8.3"
+	  }
+	 },
+	 "nbformat": 4,
+	 "nbformat_minor": 4
+	}
+
+	$ git log
+	commit 84d3f92e5690d5577f8f8f781ef92a7f907ef691 (HEAD -> sns_plot)
+	Revert "Seaborn Notebook Comments"
+	This reverts commit cd8417ee29de3889ef0061596ea6f850f4ca628b.
+
+	commit cd8417ee29de3889ef0061596ea6f850f4ca628b (origin/sns_plot)
+	Seaborn Notebook Comments
+
+	commit 8ed72fd0c1de1689ec3c543a032e04df8c06ab84 (master)
+	Initial commit
+
+
+8) Difference between commit and revert commit operation
+
+	
+	$ git diff 84d3f cd8417ee29d
+	diff --git a/chapter2_seaborn.ipynb b/chapter2_seaborn.ipynb
+	index f86cf4a..94d1b6b 100644
+	--- a/chapter2_seaborn.ipynb
+	+++ b/chapter2_seaborn.ipynb
+	@@ -762,3 +762,7 @@
+	  "nbformat": 4,
+	  "nbformat_minor": 4
+	 }
+	+
+	+## this is seaborn jupyter notebook
+	+
+	+## Seaborn library is mostly used for ploting the graphs and histogram
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
